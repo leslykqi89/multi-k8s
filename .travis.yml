@@ -15,4 +15,9 @@ after_success:
   - docker build -t leslykqi/multi-server ./server
   - docker build -t leslykqi/multi-worker ./worker
   # Log in to the docker CLI
-  
+  - echo "$DOCKER_PASWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push themto docker hub
+  - docker push leslykqi/multi-client
+  - docker push leslykqi/multi-nginx
+  - docker push leslykqi/multi-server
+  - docker push leslykqi/multi-worker
